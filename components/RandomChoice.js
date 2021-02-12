@@ -1,15 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default class RandomChoice extends React.Component {
+  handlePress = () => {
+    if (!this.props.isSelected)
+      this.props.onPress(this.props.id);
+  }
   render() {
     return (
+      <TouchableOpacity onPress={this.handlePress}>
       <Text
         style={[styles.randomNumber, this.props.isSelected && styles.selected]} >
         {this.props.randomNumber}
       </Text>
+      </TouchableOpacity >
     );
   }
 }
